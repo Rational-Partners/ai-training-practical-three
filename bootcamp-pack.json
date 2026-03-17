@@ -1,0 +1,219 @@
+{
+  "title": "Bootcamp Scheduler — Constraint Solver Practical",
+  "description": "Build a real production constraint solver. But first, build the tools you'll use to build it.",
+  "version": "2.0",
+  "setup": {
+    "install": "pip install -r requirements.txt",
+    "requiredTools": ["python3", "claude"],
+    "tmux": {
+      "layout": "vertical",
+      "panes": [
+        {
+          "name": "editor",
+          "command": "claude",
+          "size": 70,
+          "focus": true
+        },
+        {
+          "name": "shell",
+          "command": "echo 'Run: python3 -m pytest tests/ -v'",
+          "size": 30
+        }
+      ]
+    }
+  },
+  "exercises": [
+    {
+      "id": "01-spec-skill",
+      "title": "Build a Spec Skill",
+      "description": "Write a /spec command in CLAUDE.md that interviews you and produces a high-quality technical specification — with acceptance criteria, test cases, edge cases, and engineering notes. You'll use this for every challenge that follows.",
+      "directory": ".",
+      "steps": [
+        {
+          "title": "Understand what a good spec contains",
+          "instruction": "Ask Claude: 'Read challenges/01-spec-skill.md and explain the difference between a weak spec and a strong one'"
+        },
+        {
+          "title": "Look at the example",
+          "instruction": "Ask Claude: 'Read specs/example.md and explain why each section is there'"
+        },
+        {
+          "title": "Write the skill",
+          "instruction": "Ask Claude to help you create .claude/commands/spec.md. You decide what it should do — Claude helps you express it precisely."
+        },
+        {
+          "title": "Test your skill",
+          "instruction": "Run /spec and describe the availability parser (from challenge 03). Review specs/current.md — is it good enough to implement from?"
+        }
+      ]
+    },
+    {
+      "id": "02-build-skill",
+      "title": "Build a Build Skill",
+      "description": "Write a /build command that takes your spec and produces working, tested code. It should plan before coding, respect existing code, run tests, and fix failures.",
+      "directory": ".",
+      "steps": [
+        {
+          "title": "Understand the pattern",
+          "instruction": "Ask Claude: 'Read challenges/02-build-skill.md. What are the key properties of a good build skill?'"
+        },
+        {
+          "title": "Look at an example command",
+          "instruction": "Ask Claude: 'Read .claude/commands/next.md and explain how a Claude command file is structured'"
+        },
+        {
+          "title": "Write the skill",
+          "instruction": "Ask Claude to help you write .claude/commands/build.md. Think about the 5 phases: pre-flight, plan, implement, verify, report."
+        }
+      ]
+    },
+    {
+      "id": "03-availability-parser",
+      "title": "Availability Parser",
+      "description": "Use your new tools to build the foundation: parse an Excel spreadsheet into a structured availability dictionary.",
+      "directory": ".",
+      "steps": [
+        {
+          "title": "Read the challenge",
+          "instruction": "Ask Claude: 'Read challenges/03-availability-parser.md'"
+        },
+        {
+          "title": "Spec it",
+          "instruction": "Run /spec"
+        },
+        {
+          "title": "Build it",
+          "instruction": "Run /build"
+        },
+        {
+          "title": "Verify",
+          "instruction": "python3 -m pytest tests/test_01_availability.py -v"
+        }
+      ]
+    },
+    {
+      "id": "04-find-slots",
+      "title": "Find Valid Time Slots",
+      "description": "Identify which day pairs can host a bootcamp — consecutive days (Mon-Tue or Thu-Fri) with at least 2 trainers free on both.",
+      "directory": ".",
+      "steps": [
+        {
+          "title": "Read the challenge",
+          "instruction": "Ask Claude: 'Read challenges/04-find-slots.md'"
+        },
+        {
+          "title": "Spec → Build → Verify",
+          "instruction": "/spec, then /build, then python3 -m pytest tests/test_02_slots.py -v"
+        }
+      ]
+    },
+    {
+      "id": "05-greedy-scheduler",
+      "title": "Greedy Scheduler",
+      "description": "Assign trainer pairs to slots using a greedy approach.",
+      "directory": ".",
+      "steps": [
+        {
+          "title": "Read the challenge",
+          "instruction": "Ask Claude: 'Read challenges/05-greedy-scheduler.md'"
+        },
+        {
+          "title": "Spec → Build → Verify",
+          "instruction": "/spec, then /build, then python3 -m pytest tests/test_03_greedy.py -v"
+        }
+      ]
+    },
+    {
+      "id": "06-experience-rules",
+      "title": "Experience Rules",
+      "description": "Enforce trainer seniority — every bootcamp needs an experienced trainer, trainees must be paired with one.",
+      "directory": ".",
+      "steps": [
+        {
+          "title": "Read the challenge",
+          "instruction": "Ask Claude: 'Read challenges/06-experience-rules.md'"
+        },
+        {
+          "title": "Spec → Build → Verify",
+          "instruction": "/spec, then /build, then python3 -m pytest tests/test_04_experience.py -v"
+        }
+      ]
+    },
+    {
+      "id": "07-constraint-solver",
+      "title": "CP-SAT Optimal Solver",
+      "description": "Replace the greedy approach with Google OR-Tools CP-SAT to find the globally optimal schedule.",
+      "directory": ".",
+      "steps": [
+        {
+          "title": "Read the challenge",
+          "instruction": "Ask Claude: 'Read challenges/07-constraint-solver.md and explain why greedy is provably sub-optimal on this dataset'"
+        },
+        {
+          "title": "Spec → Build → Verify",
+          "instruction": "/spec, then /build, then python3 -m pytest tests/test_05_solver.py -v"
+        }
+      ]
+    },
+    {
+      "id": "08-caps",
+      "title": "Caps and Limits",
+      "description": "Add per-trainer weekly day caps and per-week total bootcamp limits, read from the intermediate.xlsx spreadsheet.",
+      "directory": ".",
+      "steps": [
+        {
+          "title": "Read the challenge",
+          "instruction": "Ask Claude: 'Read challenges/08-caps.md and show me what intermediate.xlsx looks like'"
+        },
+        {
+          "title": "Spec → Build → Verify",
+          "instruction": "/spec, then /build, then python3 -m pytest tests/test_06_caps.py -v"
+        }
+      ]
+    },
+    {
+      "id": "09-locations",
+      "title": "Location Awareness",
+      "description": "Schedule against location demand. Some locations (Paris) require French-speaking trainers.",
+      "directory": ".",
+      "steps": [
+        {
+          "title": "Read the challenge",
+          "instruction": "Ask Claude: 'Read challenges/09-locations.md'"
+        },
+        {
+          "title": "Spec → Build → Verify",
+          "instruction": "/spec, then /build, then python3 -m pytest tests/test_07_locations.py -v"
+        }
+      ]
+    },
+    {
+      "id": "10-full-system",
+      "title": "Full Production System",
+      "description": "Add bank holidays, trainer weightings, and travel penalties. Then run all 46 tests.",
+      "directory": ".",
+      "steps": [
+        {
+          "title": "Read the challenge",
+          "instruction": "Ask Claude: 'Read challenges/10-full-system.md and explain the three features'"
+        },
+        {
+          "title": "Feature A: Bank holidays",
+          "instruction": "/spec bank holiday blocking, then /build it, then python3 -m pytest tests/test_08_full.py::test_good_friday_blocks_london_trainer -v"
+        },
+        {
+          "title": "Feature B: Weightings",
+          "instruction": "/spec weightings, then /build, verify parse_weightings test"
+        },
+        {
+          "title": "Feature C: Travel penalties",
+          "instruction": "/spec travel penalties, then /build"
+        },
+        {
+          "title": "Final check",
+          "instruction": "python3 -m pytest tests/ -v"
+        }
+      ]
+    }
+  ]
+}
