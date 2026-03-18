@@ -5,21 +5,8 @@
   "setup": {
     "install": "pip install -r requirements.txt",
     "requiredTools": ["python3", "claude"],
-    "tmux": {
-      "layout": "vertical",
-      "panes": [
-        {
-          "name": "editor",
-          "command": "claude",
-          "size": 70,
-          "focus": true
-        },
-        {
-          "name": "shell",
-          "command": "echo 'Run: python3 -m pytest tests/ -v'",
-          "size": 30
-        }
-      ]
+    "shell": {
+      "command": "claude"
     }
   },
   "exercises": [
