@@ -8,7 +8,7 @@ Before starting, you need Python and the project dependencies installed. **This 
 
 Open Claude Code in this directory and give it this prompt:
 
-> Check if my computer is set up for this practical. I need Python 3.10, 3.11, or 3.12 (NOT 3.13+ — OR-Tools doesn't support it yet). Check what Python versions I have installed. If I don't have a compatible version, install one for me. Then create a virtual environment using that Python version, activate it, and install the dependencies from requirements.txt. Run `python -m pytest tests/ -x` to verify everything is working — the tests should fail with import errors (that's expected, we haven't built anything yet). Tell me when I'm ready to go.
+> Check if my computer is set up for this practical. I need Python 3.10 or later. Check what Python versions I have installed. If I don't have one, install one for me. Then create a virtual environment using that Python version, activate it, and install the dependencies from requirements.txt. Run `python -m pytest tests/ -x` to verify everything is working — the tests should fail with import errors (that's expected, we haven't built anything yet). Tell me when I'm ready to go.
 
 Claude will handle the rest — including downloading Python if needed, dealing with Windows PATH issues, and creating the virtual environment.
 
